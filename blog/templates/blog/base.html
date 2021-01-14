@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <link href="{% static 'blog/main.css' %}" rel="stylesheet">
+
+    {% if title %}g
+        <title>The Blog - {{ title }}</title>
+    {% else %}
+        <title>The Blog</title>
+    {% endif %}
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
+            <div class="container">
+                <a href="{% url 'blog-home' %}" class="navbar-brand" >The Blog</a>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarMenu">
+                    <!-- For some reason I can't get these to separate left of navbar and right of navbar -->
+                    <div class="navbar-nav">
+                        <a href="{% url 'blog-home' %}" class="nav-item nav-link">Home</a>
+                        <a href="{% url 'blog-about' %}" class="nav-item nav-link">About</a>
+                    </div>
+                    <div class="navbar-nav" style="margin-left: auto">
+{#                    Again brute forcing styling #}
+                        {%  if user.is_superuser %}
+                            <a href="/admin/" class="nav-item nav-link">Admin</a>
+                            <a href="{% url 'post-create' %}" class="nav-item nav-link">New Post</a>
+                            <a href="{% url 'profile' %}" class="nav-item nav-link">My Profile</a>
+                            <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
+                        {% else %}
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'post-create' %}" class="nav-item nav-link">New Post</a>
+                            <a href="{% url 'profile' %}" class="nav-item nav-link">My Profile</a>
+                            <a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
+                        {% else %}
+                            <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
+                            <a href="{% url 'register' %}" class="nav-item nav-link">Register</a>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message  }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {%  block content %}{% endblock %}
+            </div>
+            <div class="col-md-4">
+                <div class="content-section">
+                    <h3>Our Sidebar</h3>
+                    <p class="text-muted">You can put any information here that you would like
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-dark">Latest Posts</li>
+                            <li class="list-group-item list-group-item-dark">Announcements</li>
+                            <li class="list-group-item list-group-item-dark">Calendars</li>
+                            <li class="list-group-item list-group-item-dark">etc</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

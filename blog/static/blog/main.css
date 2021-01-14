@@ -1,0 +1,100 @@
+body {
+  background: #151616;
+  color: lightgrey;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: whitesmoke;
+}
+
+.site-header .navbar-nav .nav-link {
+  color: lightgrey;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+}
+
+main {
+  padding: 20px;
+}
+
+.content-section {
+  background: #151616;
+  padding: 10px 20px;
+  border: 1px solid grey;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+/*.list-group-item {*/
+/*  background: #151616;*/
+/*  color: white;*/
+/*}*/
+
+
+.article-title {
+  color: white;
+  text-decoration: none;
+}
+
+a.article-title:hover {
+  color: darkseagreen;
+}
+
+/*.article-content {*/
+/*  white-space: pre-line;*/
+/*}*/
+
+@media screen and (max-width: 1200px) {
+  .article-img {display: none;}
+}
+
+.article-img {
+  height: 100px;
+  width: 100px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid dimgrey;
+}
+
+.article-metadata a:hover {
+  color: skyblue;
+  text-decoration: none;
+}
+
+.mr-2 {
+  color: lightgrey;
+  text-decoration: none;
+}
+
+.small {
+  font-size: smaller;
+  color: grey;
+  padding-left: 5px;
+}
+
+.about-body {
+  padding-top: 20px;
+}
+
+/*.article-svg {*/
+/*  width: 25px;*/
+/*  height: 25px;*/
+/*  vertical-align: middle;*/
+/*}*/
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
